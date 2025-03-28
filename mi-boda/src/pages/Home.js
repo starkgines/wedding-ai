@@ -13,14 +13,14 @@ const Home = () => {
 
   return (
     <>
-    <section className="hero">
+    <section className="hero" id={"inicio"}>
       <div className="hero-content">
         <h1>Andy and Carlos</h1>
         <p className="wedding-date">24 de Enero de 2025</p>
         <button className="cta-button" onClick={handleScroll}>Ver Detalles</button>
       </div>
     </section>
-       <EventDetails /> {/* Componente temporal para probar */}
+
        </>
   );
 };

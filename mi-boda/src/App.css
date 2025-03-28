@@ -72,14 +72,18 @@
   background-color: #b08f69;
 }
 
+/* Estilos para el menú fijo */
+/* Estilos para el menú fijo HORIZONTAL */
 .fixed-menu {
   position: fixed;
   top: 20px;
-  left: 20px;
+  left: 20px; /* Posición izquierda */
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 1rem;
-  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .fixed-menu ul {
@@ -87,27 +91,46 @@
   padding: 0;
   margin: 0;
   display: flex;
-  gap: 1.5rem;
+  flex-direction: row; /* Cambiado a horizontal */
+  gap: 2rem; /* Espacio entre elementos */
 }
 
-.fixed-menu a {
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  transition: color 0.3s;
-}
-
-.fixed-menu a:hover {
-  color: #c8a27a; /* Color dorado para hover */
-}
-
-.fixed-menu a.active {
-  color: #c8a27a; /* Color dorado para la página activa */
-}
-body {
-  font-family: 'Arial', sans-serif;
-}
-
-h1, h2, h3 {
+.fixed-menu button {
+  background: none;
+  border: none;
+  cursor: pointer;
   font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: #555;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+  position: relative;
+  text-align: center; /* Texto centrado */
+}
+
+.fixed-menu button:hover {
+  color: #c8a27a;
+}
+
+.fixed-menu button.active {
+  color: #c8a27a;
+  font-weight: 500;
+}
+
+/* Línea inferior para el ítem activo */
+.fixed-menu button.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 2px;
+  background: #c8a27a;
+  border-radius: 2px;
+  animation: underline 0.3s ease;
+}
+
+@keyframes underline {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
 }

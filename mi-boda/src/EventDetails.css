@@ -1,0 +1,30 @@
+.event-details {
+    padding: 100px 20px;
+    text-align: center;
+    background-color: #fff;
+  }
+  
+  .details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+  }
+  
+  .detail-card {
+    background: #f8f5f1;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(200, 162, 122, 0.1);
+  }
+  
+  .detail-card h3 {
+    color: #c8a27a;
+    margin-bottom: 1rem;
+  }
+  
+  .map-container {
+    grid-column: 1 / -1;
+    margin-top: 2rem;
+  }
