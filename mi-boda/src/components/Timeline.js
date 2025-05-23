@@ -14,7 +14,7 @@ const Timeline = () => {
         className="vertical-timeline-element"
         contentStyle={{ background: '#f8f5f1', color: '#333' }}
         contentArrowStyle={{ borderRight: '7px solid #f8f5f1' }}
-        date="Junio 2018"
+        date="Junio 2012"
         iconStyle={{ background: '#c8a27a', color: '#fff' }}
       >
         <h3 className="vertical-timeline-element-title">✨ Nuestro Primer Encuentro</h3>

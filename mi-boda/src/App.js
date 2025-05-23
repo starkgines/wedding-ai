@@ -6,6 +6,10 @@ import Navigation from './components/Navigation';
 import OurStory from './pages/OurStory';
 import EventDetails from './pages/EventDetails';
 import RSVP from './pages/RSVP'
+import PinterestBoard from './pages/PinterestBoard';
+import HelpUs from './pages/HelpUs';
+import Gallery from './pages/Gallery';
+
 /*function App() {
   return (
     <Router>
@@ -29,6 +33,9 @@ import RSVP from './pages/RSVP'
         <OurStory id="historia" />
         <EventDetails id="detalles" />
         <RSVP id="rsvp" />
+        <PinterestBoard id="pinterest" />
+        <HelpUs id="ayuda" />
+        <Gallery id="galeria" />
         {/* Agrega más secciones aquí */}
       </div>
     );

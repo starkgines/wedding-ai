@@ -2,7 +2,7 @@ import React ,{ useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import '../App.css';
 import { useActiveSection } from '../context/ActiveSectionContext';
-import '../App.css'
+
 
 const Navigation = () => {
   const { activeSection } = useActiveSection();
@@ -19,6 +19,9 @@ const Navigation = () => {
         <li><button className={activeSection === 'inicio' ? 'active' : ''} onClick={() => handleScroll('historia')}>Nuestra Historia</button></li>
         <li><button className={activeSection === 'inicio' ? 'active' : ''} onClick={() => handleScroll('detalles')}>Detalles</button></li>
         <li><button className={activeSection === 'inicio' ? 'active' : ''} onClick={() => handleScroll('rsvp')}>RSVP</button></li>
+        <li><button className={activeSection === 'inicio' ? 'active' : ''} onClick={() => handleScroll('pinterest')}>Dress code</button></li>
+        <li><button className={activeSection === 'inicio' ? 'active' : ''} onClick={() => handleScroll('ayuda')}>Quieres ayudar?</button></li>
+        <li><button className={activeSection === 'inicio' ? 'active' : ''} onClick={() => handleScroll('galeria')}>Galeria</button></li>
       </ul>
     </nav>
   );

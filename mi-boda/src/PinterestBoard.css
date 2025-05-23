@@ -1,0 +1,38 @@
+.pinterest-section {
+    padding: 100px 20px;
+    text-align: center;
+    background: #fff;
+  }
+  
+  .board-wrapper {
+    max-width: 1200px;
+    margin: 2rem auto;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+  
+  /* Override estilos por defecto de Pinterest */
+  .pinterest-board {
+    width: 100% !important;
+    height: 600px !important;
+    display: block;
+  }
+  
+  .pinterest-board iframe {
+    width: 100% !important;
+    height: 100% !important;
+    border: none !important;
+  }
+  
+  /* Para estirar imágenes */
+  span.Pin__Image {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  
+  img.pinImg {
+    object-fit: cover !important;
+    height: 100% !important;
+    width: 100% !important;
+  }

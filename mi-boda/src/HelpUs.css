@@ -1,0 +1,68 @@
+.help-section {
+    padding: 100px 20px;
+    background: #f8f5f1;
+    text-align: center;
+  }
+  
+  .bank-accounts {
+    max-width: 800px;
+    margin: 2rem auto;
+    display: grid;
+    gap: 2rem;
+  }
+  
+  .bank-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+  
+  .bank-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .bank-header img {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .bank-details {
+    text-align: left;
+  }
+  
+  .bank-details p {
+    margin: 1rem 0;
+    color: #555;
+  }
+  
+  .copy-button {
+    background: #c8a27a;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-left: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .copy-button:hover {
+    background: #b08f69;
+  }
+  
+  .disclaimer {
+    margin-top: 2rem;
+    color: #666;
+    font-style: italic;
+  }
+  
+  .account-number, .email {
+    font-family: monospace;
+    background: #f3f3f3;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+  }

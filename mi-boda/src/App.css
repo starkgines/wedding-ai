@@ -40,7 +40,7 @@
 .hero {
   height: 100vh;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('../public/img/Andy.jpeg') center/cover; /* Necesitarás una imagen en public/img/hero-bg.jpg */
+    url('../public/img/RingAyC_crop.jpeg') center/cover; /* Necesitarás una imagen en public/img/hero-bg.jpg */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -133,4 +133,33 @@
 @keyframes underline {
   from { transform: scaleX(0); }
   to { transform: scaleX(1); }
+}
+
+.countdown-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.countdown-item {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 10px;
+  min-width: 100px;
+}
+
+.countdown-number {
+  font-size: 2.5rem;
+  font-weight: 300;
+  display: block;
+  color: #fff;
+}
+
+.countdown-label {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.8);
 }
