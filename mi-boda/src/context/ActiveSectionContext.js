@@ -1,13 +1,15 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useCallback } from 'react';
 
-// Crea el contexto con un valor por defecto
-const ActiveSectionContext = createContext({
-  activeSection: 'inicio',
-  setActiveSection: () => {},
-});
+const ActiveSectionContext = createContext(undefined);
 
 export const ActiveSectionProvider = ({ children }) => {
-  const [activeSection, setActiveSection] = useState('inicio');
+  const [activeSection, setActiveSectionState] = useState('inicio'); // Sección activa por defecto
+
+  // Función para actualizar la sección activa
+  // Esta será llamada por las secciones individuales cuando entren en el viewport
+  const setActiveSection = useCallback((sectionId) => {
+    setActiveSectionState(sectionId);
+  }, []);
 
   return (
     <ActiveSectionContext.Provider value={{ activeSection, setActiveSection }}>
@@ -16,11 +18,13 @@ export const ActiveSectionProvider = ({ children }) => {
   );
 };
 
-// Hook personalizado
+// Hook personalizado para consumir el contexto
+// Navigation.js usará esto para obtener `activeSection`
+// Las secciones de página usarán esto para obtener `setActiveSection` (a través de otro hook observador)
 export const useActiveSection = () => {
   const context = useContext(ActiveSectionContext);
-  if (!context) {
-    throw new Error('useActiveSection debe usarse dentro de ActiveSectionProvider');
+  if (context === undefined) {
+    throw new Error('useActiveSection must be used within an ActiveSectionProvider');
   }
   return context;
 };

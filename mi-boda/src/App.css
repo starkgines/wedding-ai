@@ -40,7 +40,7 @@
 .hero {
   height: 100vh;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('../public/img/RingAyC_crop.jpeg') center/cover; /* Necesitarás una imagen en public/img/hero-bg.jpg */
+    url('./assets/portada/001.JPG') center/cover;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -86,14 +86,14 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.fixed-menu ul {
+/*.fixed-menu ul {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
-  flex-direction: row; /* Cambiado a horizontal */
-  gap: 2rem; /* Espacio entre elementos */
-}
+  flex-direction: row; 
+  gap: 2rem; 
+} */
 
 .fixed-menu button {
   background: none;
@@ -162,4 +162,47 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   color: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 768px) {
+  .countdown-container {
+    gap: 10px; /* Reduce el espacio entre items */
+    /* Si quieres que se apilen verticalmente en lugar de lado a lado: */
+    /* flex-direction: column; */
+    /* align-items: stretch; */ /* Para que ocupen el ancho si están en columna */
+  }
+
+  .countdown-item {
+    padding: 10px 15px; /* Reduce el padding de los items */
+    min-width: 70px; /* Reduce el ancho mínimo */
+    /* Si usas flex-direction: column en el container, podrías querer: */
+    /* width: 100%; */
+    /* max-width: 200px; */ /* Un máximo para que no se estiren demasiado */
+    /* margin-bottom: 10px; */ /* Espacio si se apilan */
+  }
+
+  .countdown-number {
+    font-size: 2em; /* Reduce el tamaño de los números */
+  }
+
+  .countdown-label {
+    font-size: 0.8em; /* Reduce el tamaño de las etiquetas */
+  }
+
+  /* Si los items se ven muy juntos y quieres que se dividan en dos columnas en pantallas pequeñas */
+  /* Por ejemplo, para pantallas muy pequeñas donde 4 items en fila no caben bien */
+  @media (max-width: 480px) {
+    .countdown-container {
+      /* Podrías forzar a que los items se muestren en 2x2 o 1x4 */
+      /* Ejemplo para 2x2 (si tienes 4 items): */
+      /* flex-wrap: wrap; */ /* Asegúrate que esté activo */
+      /* justify-content: space-around; */
+    }
+    .countdown-item {
+       /* Ajusta el ancho para que quepan dos por fila, considerando el 'gap' */
+      /* flex-basis: calc(50% - 10px); */ /* 10px es la mitad del gap si es 20px */
+      /* O un ancho fijo si prefieres */
+      /* min-width: 120px; */ /* Ajusta según el contenido */
+    }
+  }
 }

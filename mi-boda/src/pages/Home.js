@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css';
+import { useActiveSectionObserver } from '../hooks/useActiveSectionObserver';
 
-const Home = () => {
+const weddingDate = new Date(Date.UTC(2026, 0, 24, 5, 0, 0)); // Meses: 0=enero
+
+const Home = ({ id }) => { // Asegúrate de que Home recibe el id como prop desde App.js
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -9,11 +12,13 @@ const Home = () => {
     seconds: 0
   });
 
-  // Configurar fecha UTC (24 Enero 2025 00:00 hora Colombia = UTC-5)
-  const weddingDate = new Date(Date.UTC(2026, 0, 24, 5, 0, 0)); // Meses: 0=enero
+  const { ref } = useActiveSectionObserver(id, { threshold: 0.7 }); // Ajusta el threshold según necesites
 
+        // Configurar fecha UTC (24 Enero 2025 00:00 hora)
+  
   useEffect(() => {
     const calculateTimeLeft = () => {
+
       const now = new Date().getTime();
       const distance = weddingDate - now;
 
@@ -32,22 +37,22 @@ const Home = () => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
 
-    return () => clearInterval(timer);
-  }, []);
+    return () => clearInterval(timer); // No olvides limpiar el intervalo
+  }, []); // weddingDate is now a dependency
 
-  const handleScroll = () => {
+ /* const handleScroll = () => {
     window.scrollTo({
       top: document.documentElement.clientHeight,
       behavior: 'smooth'
     });
-  };
+  }; */
 
   const formatNumber = (num) => {
     return num < 10 ? `0${num}` : num;
   };
 
   return (
-    <section className="hero" id="inicio">
+    <section className="hero" id={id} ref={ref}>
       <div className="hero-content">
         <h1>Andy and Carlos</h1>
         <p className="wedding-date">24 de Enero de 2026</p>

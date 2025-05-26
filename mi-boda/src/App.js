@@ -1,8 +1,7 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
 import './App.css';
 import Navigation from './components/Navigation';
+import Home from './pages/Home';
 import OurStory from './pages/OurStory';
 import EventDetails from './pages/EventDetails';
 import RSVP from './pages/RSVP'

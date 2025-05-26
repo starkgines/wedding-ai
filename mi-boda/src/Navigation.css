@@ -1,56 +1,176 @@
-.main-nav {
-    position: fixed;
+
+/* Estilos para el contenedor del menú fijo */
+.fixed-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: fixed; /* Ocupa todo el ancho para que el padding funcione desde el borde */
+  background-color: #fff; 
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  z-index: 1000;
+  padding: 10px 20px;
+  display: flex;
+  /* justify-content: flex-end; Ya no es necesario, el botón se posicionará a la izquierda por defecto */
+  align-items: center;
+}
+
+/* Botón Hamburguesa */
+.hamburger-button {
+  display: flex; /* Oculto por defecto, se mostrará en pantallas pequeñas */
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px; /* Ancho del icono */
+  height: 25px; /* Alto del icono */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001; /* Asegura que esté sobre la lista de enlaces cuando está cerrada */
+  /* margin-left: auto; Eliminado para que el botón se quede a la izquierda */
+}
+
+.hamburger-button span {
+  width: 30px;
+  height: 2.5px; /* Ligeramente más delgadas */
+  background-color: #333; /* Color de las líneas de la hamburguesa */
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out; /* Transición más suave */
+  transform-origin: center; /* Origen de transformación centrado para mejor rotación */
+}
+
+/* Animación de la hamburguesa a X cuando está abierta */
+/* Ajustes para que la X se forme correctamente con transform-origin: center 
+   y justify-content: space-around en el contenedor del botón */
+.hamburger-button.open span:nth-child(1) {
+  transform: translateY(6.875px) rotate(45deg); 
+}
+
+.hamburger-button.open span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(15px); /* Reducir un poco el desplazamiento lateral */
+}
+
+.hamburger-button.open span:nth-child(3) {
+  transform: translateY(-6.875px) rotate(-45deg);
+}
+
+/* Lista de Enlaces de Navegación */
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex; /* Usamos flex y controlamos visibilidad con max-height o transform */
+  align-items: center;
+  flex-direction: column; /* Apila verticalmente los enlaces */
+  width: 100%; /* Ancho completo */
+  position: absolute; /* Posiciona respecto al contenedor .fixed-menu */
+  top: 100%; /* Posiciona el desplegable justo debajo del .fixed-menu */
+  left: 0;
+  background-color: #fff; /* Fondo del menú desplegable */
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1); /* Sombra para el menú desplegable */
+  /* padding-top: 10px; */ /* El padding se manejará con los items o globalmente */
+  /* padding-bottom: 10px; */
+  z-index: 999; /* Asegura que esté debajo del botón hamburguesa si es necesario */
+
+  /* Para la animación de despliegue hacia abajo en móvil */
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.nav-links li {
+  width: 100%; /* Cada item ocupa el ancho completo en el layout de columna */
+  text-align: center;
+}
+
+.nav-links li:first-child {
+  /* Este margin-left: 0 ya no es necesario si los items son width: 100%
+     y el contenedor .nav-links maneja el padding.
+     Lo mantenemos por si acaso, pero podría eliminarse. */
+  margin-left: 0;
+}
+
+.nav-links button {
+  background: none;
+  border: none;
+  color: #555; /* Color del enlace */
+  text-decoration: none;
+  padding: 15px 20px; /* Más padding para mejor toque en móvil */
+  width: 100%; /* Botones ocupan todo el ancho del li */
+  font-size: 1em; /* Tamaño de fuente base */
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.3s ease, font-weight 0.3s ease;
+  border-radius: 4px;
+}
+
+.nav-links button:hover,
+.nav-links button.active {
+  color: #c8a27a; /* Color activo/hover - ajusta a tu tema */
+  font-weight: 700;
+}
+
+/* Estilos para cuando el menú está abierto (clase .open en .nav-links) */
+.nav-links.open {
+  max-height: calc(100vh - 50px); /* Altura máxima para el desplegable móvil, ajustar 60px a la altura del fixed-menu */
+  overflow-y: auto; /* Scroll si el contenido es muy largo */
+}
+
+/* Estilos para los items y botones dentro del menú abierto (aplican globalmente) */
+.nav-links.open li {
+  margin: 0;
+  /* width: 100%; ya está en .nav-links li */
+  /* text-align: center; ya está en .nav-links li */
+}
+
+.nav-links.open button {
+  /* padding: 15px 20px; ya está en .nav-links button */
+  /* width: 100%; ya está en .nav-links button */
+  font-size: 1.1em;
+  border-bottom: 1px solid #f0f0f0; /* Separador sutil */
+}
+
+.nav-links.open li:last-child button {
+  border-bottom: none;
+}
+
+/* Estilos para Desktop (menú lateral izquierdo) */
+@media (min-width: 769px) { /* Ajusta este breakpoint según necesites, ej. 769px */
+  .fixed-menu {
+    /* El botón de hamburguesa ya está a la izquierda por los estilos base */
+  }
+
+  .nav-links {
+    /* Reiniciar/modificar estilos para el menú lateral */
+    position: fixed; /* Fijo al viewport */
+    left: -300px; /* Inicialmente oculto fuera de la pantalla (ajusta 300px al ancho deseado del menú) */
     top: 0;
-    left: 0;
-    right: 0;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-    padding: 1rem 2rem;
+    width: 300px; /* Ancho del menú lateral (ajusta según necesites) */
+    height: 100vh; /* Altura completa del viewport */
+    background-color: #fff; /* Mismo fondo */
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* Sombra a la derecha */
+    padding: 20px 0; /* Padding vertical, sin padding horizontal aquí */
+    align-items: flex-start; /* Alinea items a la izquierda */
+    z-index: 1000; /* Mismo nivel que fixed-menu, botón hamburguesa (1001) estará encima */
+    
+    /* Animación para deslizar */
+    transition: left 0.3s ease-in-out, max-height 0s; /* Anula transición de max-height */
+    /* Quitar max-height y overflow para el menú lateral, ya no se usa para ocultar/mostrar */
+    max-height: none; 
+    overflow-y: auto; /* Permitir scroll si el contenido es muy largo */
   }
-  
-  .main-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
-    margin: 0;
-    padding: 0;
+
+  .nav-links.open {
+    left: 0; /* Desliza hacia adentro */
+    /* max-height: none; ya está en .nav-links para desktop */
   }
-  
-  .nav-link {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    color: #444;
-    padding: 0.5rem 1rem;
-    transition: all 0.3s ease;
-    position: relative;
+
+  .nav-links li {
+    text-align: left; /* Texto a la izquierda en desktop */
   }
-  
-  .nav-link:hover {
-    color: #c8a27a;
+
+  .nav-links button {
+    text-align: left; /* Texto del botón a la izquierda */
+    padding: 15px 20px; /* Padding consistente */
   }
-  
-  .nav-link.active {
-    color: #c8a27a;
-  }
-  
-  .nav-link.active::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: #c8a27a;
-    animation: underline 0.3s ease;
-  }
-  
-  @keyframes underline {
-    from { transform: scaleX(0); }
-    to { transform: scaleX(1); }
-  }
+}
