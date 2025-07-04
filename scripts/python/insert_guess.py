@@ -2,7 +2,7 @@ import pandas as pd
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
-import os # Importar el módulo os para verificar la existencia del archivo
+import os 
 
 # --- Configuración de Firebase ---
 # IMPORTANTE: Reemplaza 'path/to/your/serviceAccountKey.json' con la ruta REAL
@@ -10,7 +10,7 @@ import os # Importar el módulo os para verificar la existencia del archivo
 # Este archivo contiene tus credenciales y es CRUCIAL para autenticar tu aplicación.
 # Asegúrate de que este archivo esté protegido y NUNCA lo subas a repositorios públicos.
 # Puedes obtenerlo desde la Consola de Firebase -> Configuración del proyecto -> Cuentas de servicio -> Generar nueva clave privada.
-service_account_key_path = 'path/to/your/serviceAccountKey.json'
+service_account_key_path = './serviceAccountKey.json'
 
 # Verificar si el archivo de credenciales existe
 if not os.path.exists(service_account_key_path):
@@ -35,19 +35,19 @@ except Exception as e:
 # Reemplaza 'invitados.xlsx' con el nombre de tu archivo Excel.
 # Asegúrate de que el archivo Excel esté en el mismo directorio que este script,
 # o proporciona la ruta completa al archivo.
-excel_file_path = 'invitados.xlsx'
+file_path = './files/invitados.csv'
 
 # Verificar si el archivo Excel existe
-if not os.path.exists(excel_file_path):
-    print(f"Error: El archivo Excel '{excel_file_path}' no se encontró.")
+if not os.path.exists(file_path):
+    print(f"Error: El archivo Excel '{file_path}' no se encontró.")
     print("Asegúrate de que el archivo esté en el mismo directorio que este script o proporciona la ruta completa.")
     exit()
 
 try:
     # Leer el archivo Excel en un DataFrame de pandas
     # pandas inferirá automáticamente los tipos de datos de las columnas.
-    df = pd.read_excel(excel_file_path)
-    print(f"Archivo Excel '{excel_file_path}' cargado exitosamente. Se encontraron {len(df)} filas.")
+    df = pd.read_csv(file_path)
+    print(f"Archivo Excel '{file_path}' cargado exitosamente. Se encontraron {len(df)} filas.")
     # Mostrar las primeras filas del DataFrame para verificar
     print("\nPrimeras 5 filas del Excel:")
     print(df.head().to_string())
@@ -79,4 +79,4 @@ for index, row in df.iterrows():
         print("  Saltando a la siguiente fila...")
 
 print("\nProceso de carga de datos a Firebase completado.")
-print(f"Se intentaron procesar {len(df)} invitados desde el Excel.")
+print(f"Se intentaron procesar {len(df)} invitados desde el csv.")
