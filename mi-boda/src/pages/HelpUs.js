@@ -48,7 +48,6 @@ const HelpUs = () => {
           </div>
         </div>
 
-       
 
       </div>
       <p className="disclaimer">¡Gracias por contribuir a nuestro futuro juntos!</p>
