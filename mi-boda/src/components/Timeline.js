@@ -1,7 +1,7 @@
 import React from 'react';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
-import primeraVez from '../assets/primera-vez.jpeg'; // Crea estas imágenes en src/assets/
+import primeraVez from '../assets/001.jpeg'; // Crea estas imágenes en src/assets/
 import inicioRelacion from '../assets/primera-vez.jpeg';
 import mudanza from '../assets/primera-vez.jpeg';
 import compromiso from '../assets/primera-vez.jpeg';
