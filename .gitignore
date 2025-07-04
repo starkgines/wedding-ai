@@ -2,11 +2,11 @@
 
 
 
-./scripts/python/serviceAccountKey.json
+scripts/python/serviceAccountKey.json
 # dependencies
-/mi-boda/node_modules
-/mi-boda/.pnp
-/mi-boda/.pnp.js
+mi-boda/node_modules
+mi-boda/.pnp
+mi-boda/.pnp.js
 
 # testing
 /coverage
