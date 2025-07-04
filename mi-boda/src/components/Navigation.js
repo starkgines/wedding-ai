@@ -45,9 +45,9 @@ const Navigation = () => {
         aria-expanded={isOpen}
         aria-controls="nav-menu-list"
       >
-        <span></span>
-        <span></span>
-        <span></span>
+        <span> </span>
+        <span> </span>
+        <span> </span>
         
 
       </button>

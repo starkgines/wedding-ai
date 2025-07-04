@@ -1,93 +1,86 @@
-
 /* Estilos para el contenedor del menú fijo */
 .fixed-menu {
   position: fixed;
   top: 0;
   left: 0;
-  width: fixed; /* Ocupa todo el ancho para que el padding funcione desde el borde */
-  background-color: #fff; 
+  width: 100%; /* Ocupa todo el ancho, esto es estándar para una barra de encabezado */
+  background-color: #ffffffb3;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   z-index: 1000;
   padding: 10px 20px;
   display: flex;
-  /* justify-content: flex-end; Ya no es necesario, el botón se posicionará a la izquierda por defecto */
   align-items: center;
+  justify-content: flex-start; /* Alinea los elementos a la izquierda por defecto */
 }
 
 /* Botón Hamburguesa */
-.hamburger-button {
-  display: flex; /* Oculto por defecto, se mostrará en pantallas pequeñas */
+.fixed-menu .hamburger-button {
   flex-direction: column;
   justify-content: space-around;
   width: 30px; /* Ancho del icono */
-  height: 25px; /* Alto del icono */
+  height: 24px; /* Alto del icono */
   background: transparent;
   border: none;
   cursor: pointer;
   padding: 0;
-  z-index: 1001; /* Asegura que esté sobre la lista de enlaces cuando está cerrada */
-  /* margin-left: auto; Eliminado para que el botón se quede a la izquierda */
+  padding-left: 10px;
+  z-index: 1001; /* Asegura que el botón esté por encima del menú */
+  position: relative; /* Necesario para que el z-index funcione correctamente */
 }
 
-.hamburger-button span {
+.fixed-menu .hamburger-button span {
+  display: block;
   width: 30px;
-  height: 2.5px; /* Ligeramente más delgadas */
-  background-color: #333; /* Color de las líneas de la hamburguesa */
+  height: 3px;
+  background-color: #333; /* Color de las líneas de la hamburguesa (oscuro) */
   border-radius: 5px;
-  transition: all 0.3s ease-in-out; /* Transición más suave */
-  transform-origin: center; /* Origen de transformación centrado para mejor rotación */
+  transition: all 0.3s ease-in-out;
+  transform-origin: center;
+}
+/* Espacio entre las líneas */
+.fixed-menu .hamburger-button span:nth-child(2) {
+  margin: 6px 0;
 }
 
 /* Animación de la hamburguesa a X cuando está abierta */
-/* Ajustes para que la X se forme correctamente con transform-origin: center 
-   y justify-content: space-around en el contenedor del botón */
-.hamburger-button.open span:nth-child(1) {
-  transform: translateY(6.875px) rotate(45deg); 
+.fixed-menu .hamburger-button.open span:nth-child(1) {
+  transform: translateY(6.875px) rotate(45deg);
 }
 
-.hamburger-button.open span:nth-child(2) {
+.fixed-menu .hamburger-button.open span:nth-child(2) {
   opacity: 0;
-  transform: translateX(15px); /* Reducir un poco el desplazamiento lateral */
+  transform: translateX(15px);
 }
 
-.hamburger-button.open span:nth-child(3) {
+.fixed-menu .hamburger-button.open span:nth-child(3) {
   transform: translateY(-6.875px) rotate(-45deg);
 }
 
-/* Lista de Enlaces de Navegación */
+/* Lista de Enlaces de Navegación (MOBILE FIRST) */
 .nav-links {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex; /* Usamos flex y controlamos visibilidad con max-height o transform */
-  align-items: center;
+  display: flex;
   flex-direction: column; /* Apila verticalmente los enlaces */
-  width: 100%; /* Ancho completo */
+  width: 100%; /* Por defecto ocupa el 100% del padre, pero se limitará en .open */
   position: absolute; /* Posiciona respecto al contenedor .fixed-menu */
   top: 100%; /* Posiciona el desplegable justo debajo del .fixed-menu */
-  left: 0;
+  left: 0; /* Alinea el menú a la izquierda del fixed-menu */
   background-color: #fff; /* Fondo del menú desplegable */
   box-shadow: 0 8px 16px rgba(0,0,0,0.1); /* Sombra para el menú desplegable */
-  /* padding-top: 10px; */ /* El padding se manejará con los items o globalmente */
-  /* padding-bottom: 10px; */
-  z-index: 999; /* Asegura que esté debajo del botón hamburguesa si es necesario */
+  z-index: 999; /* Asegura que esté debajo del botón hamburguesa */
 
-  /* Para la animación de despliegue hacia abajo en móvil */
+  /* Por defecto, el menú está oculto en móvil */
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease-out;
+  /* Es crucial que JavaScript añada la clase 'open' para que este menú se muestre. */
 }
 
 .nav-links li {
   width: 100%; /* Cada item ocupa el ancho completo en el layout de columna */
   text-align: center;
-}
-
-.nav-links li:first-child {
-  /* Este margin-left: 0 ya no es necesario si los items son width: 100%
-     y el contenedor .nav-links maneja el padding.
-     Lo mantenemos por si acaso, pero podría eliminarse. */
-  margin-left: 0;
 }
 
 .nav-links button {
@@ -112,21 +105,18 @@
 
 /* Estilos para cuando el menú está abierto (clase .open en .nav-links) */
 .nav-links.open {
-  max-height: calc(100vh - 50px); /* Altura máxima para el desplegable móvil, ajustar 60px a la altura del fixed-menu */
+  max-height: calc(100vh - 50px); /* Altura máxima para el desplegable móvil */
   overflow-y: auto; /* Scroll si el contenido es muy largo */
+  
+  /* Ajuste para que el menú no ocupe todo el ancho en móvil cuando está abierto */
+  max-width: 90%; /* Limita el ancho del menú desplegable */
+  margin: 0 auto; /* Centra el menú desplegable */
+  left: 5%; /* Ajusta la posición para compensar el margen si es necesario */
+  right: 5%; /* Ajusta la posición para compensar el margen si es necesario */
 }
 
-/* Estilos para los items y botones dentro del menú abierto (aplican globalmente) */
-.nav-links.open li {
-  margin: 0;
-  /* width: 100%; ya está en .nav-links li */
-  /* text-align: center; ya está en .nav-links li */
-}
-
+/* Separadores en móvil */
 .nav-links.open button {
-  /* padding: 15px 20px; ya está en .nav-links button */
-  /* width: 100%; ya está en .nav-links button */
-  font-size: 1.1em;
   border-bottom: 1px solid #f0f0f0; /* Separador sutil */
 }
 
@@ -134,43 +124,73 @@
   border-bottom: none;
 }
 
-/* Estilos para Desktop (menú lateral izquierdo) */
-@media (min-width: 769px) { /* Ajusta este breakpoint según necesites, ej. 769px */
+/* Media query para móviles (hasta 768px de ancho) */
+@media (max-width: 768px) {
+  .fixed-menu .hamburger-button {
+    display: flex; /* Mostrar el botón de hamburguesa en móvil */
+  }
+
+  /* Para el .fixed-menu, si solo quieres el botón de hamburguesa y el título del menú
+     podrías ajustar justify-content */
   .fixed-menu {
-    /* El botón de hamburguesa ya está a la izquierda por los estilos base */
+    justify-content: space-between; /* Alinea el botón de hamburguesa a la izquierda y otros elementos a la derecha */
+    width: auto/* Si solo hay el botón de hamburguesa, flex-start es suficiente */
+  }
+
+  /* Oculta la barra de navegación por defecto en móvil */
+  .nav-links {
+    display: none; /* Asegura que no se vea el menú cuando no está abierto */
+  }
+  
+  .nav-links.open {
+      display: flex; /* Muestra el menú cuando tiene la clase open */
+  }
+}
+
+/* Estilos para Desktop (min-width: 769px) */
+@media (min-width: 769px) {
+  .fixed-menu {
+    justify-content: flex-start; /* Alinea los elementos a la izquierda en desktop */
+  }
+
+  .hamburger-button {
+    display: none; /* Ocultar en desktop */
   }
 
   .nav-links {
-    /* Reiniciar/modificar estilos para el menú lateral */
-    position: fixed; /* Fijo al viewport */
-    left: -300px; /* Inicialmente oculto fuera de la pantalla (ajusta 300px al ancho deseado del menú) */
-    top: 0;
-    width: 300px; /* Ancho del menú lateral (ajusta según necesites) */
-    height: 100vh; /* Altura completa del viewport */
-    background-color: #fff; /* Mismo fondo */
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* Sombra a la derecha */
-    padding: 20px 0; /* Padding vertical, sin padding horizontal aquí */
-    align-items: flex-start; /* Alinea items a la izquierda */
-    z-index: 1000; /* Mismo nivel que fixed-menu, botón hamburguesa (1001) estará encima */
+    /* Reiniciar/modificar estilos para el menú horizontal */
+    position: relative; /* Ya no es absoluto, se integra en el flujo */
+    top: auto;
+    left: auto;
+    width: auto; /* El ancho lo define el contenido */
+    height: auto; /* La altura la define el contenido */
+    flex-direction: row; /* Elementos en fila */
+    background-color: transparent; /* Fondo transparente */
+    box-shadow: none; /* Sin sombra */
+    padding: 0; /* Sin padding global, los items tendrán su padding */
+    align-items: center; /* Centrar verticalmente los items */
     
-    /* Animación para deslizar */
-    transition: left 0.3s ease-in-out, max-height 0s; /* Anula transición de max-height */
-    /* Quitar max-height y overflow para el menú lateral, ya no se usa para ocultar/mostrar */
-    max-height: none; 
-    overflow-y: auto; /* Permitir scroll si el contenido es muy largo */
-  }
-
-  .nav-links.open {
-    left: 0; /* Desliza hacia adentro */
-    /* max-height: none; ya está en .nav-links para desktop */
+    /* Asegurarse de que esté siempre visible y no animado por max-height/overflow */
+    max-height: none;
+    overflow: visible;
+    transition: none; /* Desactivar transiciones que no aplican a desktop */
+    display: flex; /* Asegura que el menú sea visible en desktop */
   }
 
   .nav-links li {
-    text-align: left; /* Texto a la izquierda en desktop */
+    width: auto; /* Ancho automático para cada item */
+    margin-left: 20px; /* Espacio entre los enlaces en desktop */
+    text-align: left; /* Texto a la izquierda */
+  }
+
+  .nav-links li:first-child {
+    margin-left: 0; /* El primer elemento no necesita margen izquierdo */
   }
 
   .nav-links button {
-    text-align: left; /* Texto del botón a la izquierda */
-    padding: 15px 20px; /* Padding consistente */
+    padding: 10px 15px; /* Padding más compacto en desktop */
+    width: auto; /* El botón ocupa el ancho de su contenido */
+    font-size: 1em;
+    border-bottom: none; /* Sin separadores en desktop */
   }
 }
