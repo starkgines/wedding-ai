@@ -1,0 +1,9 @@
+/* Nombre del archivo: Timeline.module.css */
+
+.timelineImage {
+  width: 100%; /* La imagen ocupa todo el ancho del contenedor */
+  max-height: 200px; /* Limita la altura máxima para que no sea muy grande */
+  object-fit: cover; /* Asegura que la imagen cubra el espacio sin deformarse */
+  border-radius: 8px; /* Bordes redondeados para un look más suave */
+  margin-top: 10px; /* Un poco de espacio arriba */
+}

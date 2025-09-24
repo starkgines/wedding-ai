@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import '../PinterestBoard.css';
+import './PinterestBoard.module.css';
 
 const PinterestBoard = () => {
   useEffect(() => {

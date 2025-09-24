@@ -1,6 +1,6 @@
 import React from 'react';
 import Timeline from '../components/Timeline';
-import '../OurStory.css'; // Crearemos este archivo
+import './OurStory.module.css'; // Crearemos este archivo
 import { useActiveSectionObserver } from '../hooks/useActiveSectionObserver'; // Cambiado al nuevo hook
 
 const OurStory = ({id}) => {

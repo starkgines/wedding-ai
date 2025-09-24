@@ -1,6 +1,6 @@
 // src/pages/HelpUs.js
 import React from 'react';
-import '../HelpUs.css';
+import './HelpUs.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBank, faHandHoldingHeart } from '@fortawesome/free-solid-svg-icons';
 

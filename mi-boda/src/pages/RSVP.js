@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase';
-import '../RSVP.css';
+import './RSVP.module.css';
 
 const RSVP = () => {
   const [codigo, setCodigo] = useState('');

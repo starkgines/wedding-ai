@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import '../Navigation.css'; // O considera crear un Navigation.css para estilos específicos del componente
-import { useActiveSection } from '../context/ActiveSectionContext'; // Asegúrate de que este contexto esté configurado
+import styles from './Navigation.module.css';
+import { useActiveSection } from '../context/ActiveSectionContext';
 
 const Navigation = () => {
   const { activeSection } = useActiveSection();
-  const [isOpen, setIsOpen] = useState(false); // Estado para el menú hamburguesa
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
-    console.log('toggleMenu: Antes, isOpen =', isOpen, '. Después, será =', !isOpen);
     setIsOpen(!isOpen);
   };
 
@@ -16,8 +15,7 @@ const Navigation = () => {
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' });
     }
-    console.log('handleScrollAndCloseMenu: Antes, isOpen =', isOpen, '. Después, será = false');
-    setIsOpen(false); // Cierra el menú después de hacer clic en un enlace
+    setIsOpen(false);
   };
 
   const menuItems = [
@@ -30,16 +28,11 @@ const Navigation = () => {
     { id: 'galeria', label: 'Galería' },
   ];
 
-  // Efecto para depurar cambios en isOpen
-  React.useEffect(() => {
-    console.log('El estado isOpen ha cambiado a:', isOpen);
-  }, [isOpen]);
-
   return (
-    <nav className="fixed-menu">
+    <nav className={styles['fixed-menu']}>
       Menu
       <button
-        className={`hamburger-button ${isOpen ? 'open' : ''}`}
+        className={`${styles['hamburger-button']} ${isOpen ? styles.open : ''}`}
         onClick={toggleMenu}
         aria-label="Toggle menu"
         aria-expanded={isOpen}
@@ -48,15 +41,17 @@ const Navigation = () => {
         <span> </span>
         <span> </span>
         <span> </span>
-        
-
       </button>
-      <ul className={`nav-links ${isOpen ? 'open' : ''}`} id="nav-menu-list" role="menubar">
+      <ul
+        className={`${styles['nav-links']} ${isOpen ? styles.open : ''}`}
+        id="nav-menu-list"
+        role="menubar"
+      >
         {menuItems.map(item => (
           <li key={item.id} role="none">
             <button
               role="menuitem"
-              className={activeSection === item.id ? 'active' : ''}
+              className={activeSection === item.id ? styles.active : ''}
               onClick={() => handleScrollAndCloseMenu(item.id)}
             >
               {item.label}
